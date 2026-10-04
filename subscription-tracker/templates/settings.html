@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Настройки — SubTracker{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Настройки</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Смена пароля</h5>
+                <div class="mb-3">
+                    <label class="form-label">Текущий пароль</label>
+                    <input type="password" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Новый пароль</label>
+                    <input type="password" class="form-control">
+                </div>
+                <button class="btn btn-primary">Сохранить</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Профиль</h5>
+                <p><strong>Логин:</strong> oleg</p>
+                <p><strong>Дата регистрации:</strong> 01.10.2025</p>
+                <button class="btn btn-outline-danger">Выйти</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,72 @@
+    {% extends "base.html" %}
+{% block title %}Дашборд — SubTracker{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Дашборд</h1>
+
+<!-- Карточки -->
+<div class="row g-3 mb-4">
+    <div class="col-md-4">
+        <div class="card text-center shadow-sm">
+            <div class="card-body">
+                <h6 class="text-muted">В месяц</h6>
+                <h2 class="text-primary">2 797 ₽</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-center shadow-sm">
+            <div class="card-body">
+                <h6 class="text-muted">В год</h6>
+                <h2 class="text-success">33 564 ₽</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-center shadow-sm">
+            <div class="card-body">
+                <h6 class="text-muted">Всего потрачено</h6>
+                <h2 class="text-danger">47 000 ₽</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- График -->
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <h5 class="card-title">Траты по категориям</h5>
+        <canvas id="categoryChart" height="120"></canvas>
+    </div>
+</div>
+
+<!-- Заготовка под симулятор -->
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h5 class="card-title">🎯 Симулятор экономии</h5>
+        <p class="text-muted">Здесь будет ползунок «что если отменю». Появится на неделе 8.</p>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    const ctx = document.getElementById('categoryChart');
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Развлечения', 'Музыка', 'Здоровье'],
+            datasets: [{
+                data: [998, 299, 1500],
+                backgroundColor: ['#dc3545', '#198754', '#ffc107']
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'bottom' }
+            }
+        }
+    });
+</script>
+{% endblock %}
