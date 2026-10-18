@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block title %}Мои подписки — SubTracker{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-2">
+    <h1>Мои подписки</h1>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#subModal">
+        + Добавить подписку
+    </button>
+</div>
+<p class="text-muted mb-3" id="subsSummary"></p>
+
+<!-- Сообщения об ошибках -->
+<div id="pageAlert" class="alert d-none" role="alert"></div>
+
+<!-- Таблица рисуется скриптом static/js/subscriptions.js из данных API -->
+<div class="table-responsive">
+    <table class="table table-striped table-hover align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th>Название</th>
+                <th>Категория</th>
+                <th>Сумма</th>
+                <th>Дата списания</th>
+                <th>Использований в месяц</th>
+                <th>Последнее использование</th>
+                <th>Цена за использование</th>
+                <th class="text-end">Действия</th>
+            </tr>
+        </thead>
+        <tbody id="subsBody">
+            <tr><td colspan="8" class="text-center text-muted py-4">Загрузка…</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Окно добавления / изменения подписки -->
+<div class="modal fade" id="subModal" tabindex="-1" aria-labelledby="subModalTitle" aria-hidden="true">
+    <div class="modal-dialog">
+        <form class="modal-content needs-validation" id="subForm" novalidate>
+            <div class="modal-header">
+                <h5 class="modal-title" id="subModalTitle">Добавить подписку</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+                <div id="formAlert" class="alert d-none" role="alert"></div>
+                <input type="hidden" id="subId">
+
+                <div class="mb-3">
+                    <label class="form-label" for="subName">Название</label>
+                    <input type="text" class="form-control" id="subName" name="name" placeholder="Netflix"
+                           maxlength="100" required>
+                    <div class="invalid-feedback">Укажите название.</div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="subCategory">Категория</label>
+                    <select class="form-select" id="subCategory" name="category" required>
+                        <option>Развлечения</option>
+                        <option>Музыка</option>
+                        <option>Здоровье</option>
+                        <option>Учёба</option>
+                        <option>Другое</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="subCost">Сумма в месяц (₽)</label>
+                    <input type="number" class="form-control" id="subCost" name="cost" placeholder="799"
+                           min="1" step="1" required>
+                    <div class="invalid-feedback">Введите сумму больше нуля.</div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="subDate">Дата списания</label>
+                    <input type="date" class="form-control" id="subDate" name="billing_date" required>
+                    <div class="invalid-feedback">Выберите дату.</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                <button type="submit" class="btn btn-primary" id="subSaveBtn">Сохранить</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/subscriptions.js') }}"></script>
+{% endblock %}

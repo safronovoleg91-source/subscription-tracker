@@ -1,0 +1,35 @@
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+.card {
+    border: none;
+    border-radius: 12px;
+}
+
+/* Лёгкий «подъём» только у карточек-плиток, а не у больших блоков с графиками и таблицами */
+.card.text-center:hover {
+    transform: translateY(-2px);
+    transition: 0.2s;
+}
+
+.table th {
+    font-weight: 600;
+}
+
+footer {
+    padding: 20px 0;
+}
+
+/* Контейнер для графиков Chart.js: фиксированная высота (так рекомендует документация Chart.js
+   для responsive-графиков; в настройках графиков стоит maintainAspectRatio: false) */
+.chart-box {
+    position: relative;
+    height: 320px;
+}

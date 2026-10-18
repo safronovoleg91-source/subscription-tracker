@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Настройки — SubTracker{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Настройки</h1>
+
+<div id="settingsAlert" class="alert d-none" role="alert"></div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Смена пароля</h5>
+                <form id="passwordForm">
+                    <div class="mb-3">
+                        <label class="form-label" for="currentPassword">Текущий пароль</label>
+                        <input type="password" class="form-control" id="currentPassword"
+                               autocomplete="current-password" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="newPassword">Новый пароль (минимум 6 символов)</label>
+                        <input type="password" class="form-control" id="newPassword"
+                               autocomplete="new-password" minlength="6" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="repeatPassword">Повторите новый пароль</label>
+                        <input type="password" class="form-control" id="repeatPassword"
+                               autocomplete="new-password" minlength="6" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="passwordSaveBtn">Сохранить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Профиль</h5>
+                <p><strong>Логин:</strong> <span id="profileUsername">—</span></p>
+                <p><strong>Дата регистрации:</strong> <span id="profileCreated">—</span></p>
+                <button type="button" class="btn btn-outline-danger js-logout">Выйти</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/settings.js') }}"></script>
+{% endblock %}
